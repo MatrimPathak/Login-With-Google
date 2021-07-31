@@ -15,10 +15,3 @@ function onSignIn(googleUser) {
   ppp.src = profile.getImageUrl();
   email.textContent = profile.getEmail();
 }
-
-function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {
-    console.log('User signed out.');
-  });
-}
