@@ -1,5 +1,5 @@
 const uname = document.querySelector(".username .uname"),
-ppp = document.querySelector(".profile .ppp"),
+ppp = document.querySelector(".profile img"),
 email = document.querySelector(".emailid .email"),
 gid = document.querySelector(".googleid .gid");
 
@@ -12,6 +12,6 @@ function onSignIn(googleUser) {
 
   gid.textContent = profile.getId();
   uname.textContent = profile.getName();
-  ppp.textContent = profile.getImageUrl();
+  ppp.src = profile.getImageUrl();
   email.textContent = profile.getEmail();
 }
