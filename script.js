@@ -1,7 +1,20 @@
 const uname = document.querySelector(".username .uname"),
-ppp = document.querySelector(".profile img"),
-email = document.querySelector(".emailid .email"),
-gid = document.querySelector(".googleid .gid");
+  ppp = document.querySelector(".profile img"),
+  email = document.querySelector(".emailid .email"),
+  signout = document.querySelector(".login-signup a"),
+  gid = document.querySelector(".googleid .gid");
+
+signout.onclick = () => {
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    console.log('User signed out.');
+
+    gid.textContent = '';
+    uname.textContent = '';
+    ppp.src = '';
+    email.textContent = '';
+  });
+}
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
@@ -10,15 +23,8 @@ function onSignIn(googleUser) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
-  gid.textContent = profile.getId();
+  gid.textContent = 'Google ID: ' + profile.getId();
   uname.textContent = profile.getName();
   ppp.src = profile.getImageUrl();
   email.textContent = '(' + profile.getEmail() + ')';
-}
-
-function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {
-    console.log('User signed out.');
-  });
 }
